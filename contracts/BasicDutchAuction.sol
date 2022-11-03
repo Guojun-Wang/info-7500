@@ -37,14 +37,14 @@ contract BasicDutchAuction {
     }
 
     function finalize() public {
-        require(endAuction && !finalized, "auction has stopped");
+        require(endAuction && !finalized, "auction has stopped or auction is going");
         require(msg.sender == winnerAddress, "sender Address os not equal to winnerAddress");
         finalized = true;
         ownerAddress.transfer(winningBid);
     }
 
     function refund(uint256 refundAmount) public {
-        require(endAuction && !finalized, "auction has stopped");
+        require(endAuction && !finalized, "auction has stopped or auction is going");
         finalized = true;
         winnerAddress.transfer(refundAmount);
     }
