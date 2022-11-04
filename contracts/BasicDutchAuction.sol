@@ -37,14 +37,18 @@ contract BasicDutchAuction {
     }
 
     function finalize() public {
-        require(endAuction && !finalized, "auction has stopped or auction is going");
+        require(endAuction, "the auction is going");
+        require(!finalized, "the auction has finalized");
         require(msg.sender == winnerAddress, "sender Address os not equal to winnerAddress");
         finalized = true;
         ownerAddress.transfer(winningBid);
     }
 
     function refund(uint256 refundAmount) public {
-        require(endAuction && !finalized, "auction has stopped or auction is going");
+        require(endAuction, "the auction is going");
+        require(!finalized, "the auction has stopped");
+        uint a = uint(refundAmount);
+        require(a<=winningBid, "refund must lower than winningBid");
         finalized = true;
         winnerAddress.transfer(refundAmount);
     }
