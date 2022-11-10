@@ -3,10 +3,11 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
+//import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 
-contract NFTDutchAuction is ERC721, Initializable{
+contract NFTDutchAuction is ERC721Upgradeable{
 
     address payable ownerAddress;
     address payable winnerAddress;
@@ -23,7 +24,7 @@ contract NFTDutchAuction is ERC721, Initializable{
     bool endAuction;
     bool finalized;
 
-    constructor() ERC721("NFTDutchAuction", "NFT"){
+//    constructor() ERC721Upgradeable("NFTDutchAuction", "NFT"){
 //        reservePrice = _reservePrice;
 //        numBlocksActionOpen = _numBlocksAuctionOpen;
 //        offerPriceDecrement = _offerPriceDecrement;
@@ -33,13 +34,16 @@ contract NFTDutchAuction is ERC721, Initializable{
 //        erc721TokenAddress = _erc721TokenAddress;
 //        _mint(erc721TokenAddress,nftTokenId);
         //nft = ERC721(_erc721TokenAddress);
-    }
+//    }
+
+
 
     function initialize(address _erc721TokenAddress,
                         uint256 _nftTokenId,
                         uint _reservePrice,
                         uint256 _numBlocksAuctionOpen,
-                        uint _offerPriceDecrement) public initializer {
+                        uint _offerPriceDecrement) initializer public {
+        __ERC721_init("NFTDutchAuction","NFT");
         reservePrice = _reservePrice;
         numBlocksActionOpen = _numBlocksAuctionOpen;
         offerPriceDecrement = _offerPriceDecrement;
