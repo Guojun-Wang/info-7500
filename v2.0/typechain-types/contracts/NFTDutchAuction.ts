@@ -293,7 +293,7 @@ export interface NFTDutchAuction extends BaseContract {
     ): Promise<[string]>;
 
     initialize(
-      erc721TokenAddress: PromiseOrValue<string>,
+      _erc721TokenAddress: PromiseOrValue<string>,
       _nftTokenId: PromiseOrValue<BigNumberish>,
       _reservePrice: PromiseOrValue<BigNumberish>,
       _numBlocksAuctionOpen: PromiseOrValue<BigNumberish>,
@@ -385,7 +385,7 @@ export interface NFTDutchAuction extends BaseContract {
   ): Promise<string>;
 
   initialize(
-    erc721TokenAddress: PromiseOrValue<string>,
+    _erc721TokenAddress: PromiseOrValue<string>,
     _nftTokenId: PromiseOrValue<BigNumberish>,
     _reservePrice: PromiseOrValue<BigNumberish>,
     _numBlocksAuctionOpen: PromiseOrValue<BigNumberish>,
@@ -473,7 +473,7 @@ export interface NFTDutchAuction extends BaseContract {
     ): Promise<string>;
 
     initialize(
-      erc721TokenAddress: PromiseOrValue<string>,
+      _erc721TokenAddress: PromiseOrValue<string>,
       _nftTokenId: PromiseOrValue<BigNumberish>,
       _reservePrice: PromiseOrValue<BigNumberish>,
       _numBlocksAuctionOpen: PromiseOrValue<BigNumberish>,
@@ -604,7 +604,7 @@ export interface NFTDutchAuction extends BaseContract {
     ): Promise<BigNumber>;
 
     initialize(
-      erc721TokenAddress: PromiseOrValue<string>,
+      _erc721TokenAddress: PromiseOrValue<string>,
       _nftTokenId: PromiseOrValue<BigNumberish>,
       _reservePrice: PromiseOrValue<BigNumberish>,
       _numBlocksAuctionOpen: PromiseOrValue<BigNumberish>,
@@ -697,7 +697,7 @@ export interface NFTDutchAuction extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     initialize(
-      erc721TokenAddress: PromiseOrValue<string>,
+      _erc721TokenAddress: PromiseOrValue<string>,
       _nftTokenId: PromiseOrValue<BigNumberish>,
       _reservePrice: PromiseOrValue<BigNumberish>,
       _numBlocksAuctionOpen: PromiseOrValue<BigNumberish>,

@@ -12,7 +12,8 @@ describe("NFTDutchAuction", function () {
     const [owner, otherAccount, thirdAccount] = await ethers.getSigners();
 
     const nftDutchAuctionFactory = await ethers.getContractFactory("NFTDutchAuction");
-    const nftDutchAuction = await nftDutchAuctionFactory.deploy(owner.address,0,500,10,25);
+    const nftDutchAuction = await nftDutchAuctionFactory.deploy();
+    await nftDutchAuction.initialize(owner.address,0,500,10,25);
 
     return { nftDutchAuction, owner, otherAccount};
   }

@@ -23,24 +23,19 @@ contract NFTDutchAuction is ERC721, Initializable{
     bool endAuction;
     bool finalized;
 
-    constructor(address _erc721TokenAddress,
-                uint256 _nftTokenId,
-                uint256 _reservePrice,
-                uint256 _numBlocksAuctionOpen,
-                uint256 _offerPriceDecrement)
-    ERC721("NFTDutchAuction", "NFT"){
-        reservePrice = _reservePrice;
-        numBlocksActionOpen = _numBlocksAuctionOpen;
-        offerPriceDecrement = _offerPriceDecrement;
-        ownerAddress = payable(msg.sender);
-        startBlockNumber = block.number;
-        nftTokenId = _nftTokenId;
-        erc721TokenAddress = _erc721TokenAddress;
-        _mint(erc721TokenAddress,nftTokenId);
+    constructor() ERC721("NFTDutchAuction", "NFT"){
+//        reservePrice = _reservePrice;
+//        numBlocksActionOpen = _numBlocksAuctionOpen;
+//        offerPriceDecrement = _offerPriceDecrement;
+//        ownerAddress = payable(msg.sender);
+//        startBlockNumber = block.number;
+//        nftTokenId = _nftTokenId;
+//        erc721TokenAddress = _erc721TokenAddress;
+//        _mint(erc721TokenAddress,nftTokenId);
         //nft = ERC721(_erc721TokenAddress);
     }
 
-    function initialize(address erc721TokenAddress,
+    function initialize(address _erc721TokenAddress,
                         uint256 _nftTokenId,
                         uint _reservePrice,
                         uint256 _numBlocksAuctionOpen,
@@ -51,6 +46,7 @@ contract NFTDutchAuction is ERC721, Initializable{
         ownerAddress = payable(msg.sender);
         startBlockNumber = block.number;
         nftTokenId = _nftTokenId;
+        erc721TokenAddress = _erc721TokenAddress;
         _mint(erc721TokenAddress,nftTokenId);
     }
 
