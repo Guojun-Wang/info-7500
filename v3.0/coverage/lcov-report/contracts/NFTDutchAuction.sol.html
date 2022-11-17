@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">79.41% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>27/34</span>
+        <span class='fraction'>28/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">94.44% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>17/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>4/5</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">79.41% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>27/34</span>
+        <span class='fraction'>28/28</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -130,7 +130,8 @@
 85
 86
 87
-88</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+88
+89</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,14 +162,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,13 +170,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,10 +224,12 @@
 &nbsp;
 pragma solidity ^0.8.0;
 &nbsp;
-import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
+//import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 &nbsp;
-contract NFTDutchAuction is ERC721, Initializable{
+contract NFTDutchAuction is ERC721Upgradeable{
 &nbsp;
     address payable ownerAddress;
     address payable winnerAddress;
@@ -242,12 +246,26 @@ contract NFTDutchAuction is ERC721, Initializable{
     bool endAuction;
     bool finalized;
 &nbsp;
-    constructor(address _erc721TokenAddress,
-                uint256 _nftTokenId,
-                uint256 _reservePrice,
-                uint256 _numBlocksAuctionOpen,
-                uint256 _offerPriceDecrement)
-    ERC721("NFTDutchAuction", "NFT"){
+//    constructor() ERC721Upgradeable("NFTDutchAuction", "NFT"){
+//        reservePrice = _reservePrice;
+//        numBlocksActionOpen = _numBlocksAuctionOpen;
+//        offerPriceDecrement = _offerPriceDecrement;
+//        ownerAddress = payable(msg.sender);
+//        startBlockNumber = block.number;
+//        nftTokenId = _nftTokenId;
+//        erc721TokenAddress = _erc721TokenAddress;
+//        _mint(erc721TokenAddress,nftTokenId);
+        //nft = ERC721(_erc721TokenAddress);
+//    }
+&nbsp;
+&nbsp;
+&nbsp;
+    function initialize(address _erc721TokenAddress,
+                        uint256 _nftTokenId,
+                        uint _reservePrice,
+                        uint256 _numBlocksAuctionOpen,
+                        uint _offerPriceDecrement) initializer public {
+        __ERC721_init("NFTDutchAuction","NFT");
         reservePrice = _reservePrice;
         numBlocksActionOpen = _numBlocksAuctionOpen;
         offerPriceDecrement = _offerPriceDecrement;
@@ -256,21 +274,6 @@ contract NFTDutchAuction is ERC721, Initializable{
         nftTokenId = _nftTokenId;
         erc721TokenAddress = _erc721TokenAddress;
         _mint(erc721TokenAddress,nftTokenId);
-        //nft = ERC721(_erc721TokenAddress);
-    }
-&nbsp;
-<span class="fstat-no" title="function not covered" >    function initialize(address erc721TokenAddress,</span>
-                        uint256 _nftTokenId,
-                        uint _reservePrice,
-                        uint256 _numBlocksAuctionOpen,
-                        uint _offerPriceDecrement) public initializer {
-<span class="cstat-no" title="statement not covered" >        reservePrice = _reservePrice</span>;
-<span class="cstat-no" title="statement not covered" >        numBlocksActionOpen = _numBlocksAuctionOpen</span>;
-<span class="cstat-no" title="statement not covered" >        offerPriceDecrement = _offerPriceDecrement</span>;
-<span class="cstat-no" title="statement not covered" >        ownerAddress = payable(msg.sender)</span>;
-<span class="cstat-no" title="statement not covered" >        startBlockNumber = block.number</span>;
-<span class="cstat-no" title="statement not covered" >        nftTokenId = _nftTokenId</span>;
-<span class="cstat-no" title="statement not covered" >        _mint(erc721TokenAddress,nftTokenId)</span>;
     }
 &nbsp;
     function bid() public payable returns(address) {
@@ -310,7 +313,7 @@ contract NFTDutchAuction is ERC721, Initializable{
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Nov 10 2022 18:10:27 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 18 2022 00:24:08 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../prettify.js"></script>

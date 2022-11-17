@@ -63,7 +63,7 @@ contract NFTDutchAuction_ERC20Bids{
         require(msg.sender == winnerAddress, "sender Address os not equal to winnerAddress");
         finalized = true;
         //ownerAddress.transfer(winningBid);
-        tokenAddress.transferFrom(address(this), ownerAddress, winningBid);
+        tokenAddress.transfer(ownerAddress,winningBid);
         //transferFrom(erc721TokenAddress, winnerAddress, nftTokenId);
         //nftTokenAddress.transferFrom(ownerAddress,winnerAddress,nftTokenId);
     }
