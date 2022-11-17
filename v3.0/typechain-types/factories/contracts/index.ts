@@ -3,4 +3,8 @@
 /* eslint-disable */
 export { BasicDutchAuction__factory } from "./BasicDutchAuction__factory";
 export { Lock__factory } from "./Lock__factory";
+export { MyERC20__factory } from "./MyERC20__factory";
+export { MyERC721__factory } from "./MyERC721__factory";
 export { NFTDutchAuction__factory } from "./NFTDutchAuction__factory";
+export { NFTDutchAuction_ERC20Bids__factory } from "./NFTDutchAuction_ERC20Bids__factory";
+export { OfficalERC20__factory } from "./OfficalERC20__factory";

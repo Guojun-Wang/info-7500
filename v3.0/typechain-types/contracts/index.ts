@@ -3,4 +3,8 @@
 /* eslint-disable */
 export type { BasicDutchAuction } from "./BasicDutchAuction";
 export type { Lock } from "./Lock";
+export type { MyERC20 } from "./MyERC20";
+export type { MyERC721 } from "./MyERC721";
 export type { NFTDutchAuction } from "./NFTDutchAuction";
+export type { NFTDutchAuction_ERC20Bids } from "./NFTDutchAuction_ERC20Bids";
+export type { OfficalERC20 } from "./OfficalERC20";

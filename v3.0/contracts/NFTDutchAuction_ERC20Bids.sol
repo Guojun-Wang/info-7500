@@ -4,17 +4,19 @@
 pragma solidity ^0.8.0;
 
 //import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 
-contract NFTDutchAuction is ERC721Upgradeable{
+contract NFTDutchAuction_ERC20Bids{
 
     address payable ownerAddress;
     address payable winnerAddress;
     address erc721TokenAddress;
     uint startBlockNumber;
-    //ERC721 nft;
+    IERC20 private tokenAddress;
+    IERC721 private nftTokenAddress;
 
     uint256 reservePrice;
     uint256 numBlocksActionOpen;
@@ -25,43 +27,32 @@ contract NFTDutchAuction is ERC721Upgradeable{
     bool endAuction;
     bool finalized;
 
-//    constructor() ERC721Upgradeable("NFTDutchAuction", "NFT"){
-//        reservePrice = _reservePrice;
-//        numBlocksActionOpen = _numBlocksAuctionOpen;
-//        offerPriceDecrement = _offerPriceDecrement;
-//        ownerAddress = payable(msg.sender);
-//        startBlockNumber = block.number;
-//        nftTokenId = _nftTokenId;
-//        erc721TokenAddress = _erc721TokenAddress;
-//        _mint(erc721TokenAddress,nftTokenId);
-        //nft = ERC721(_erc721TokenAddress);
-//    }
 
-
-
-    function initialize(address _erc721TokenAddress,
-                        uint256 _nftTokenId,
-                        uint _reservePrice,
-                        uint256 _numBlocksAuctionOpen,
-                        uint _offerPriceDecrement) initializer public {
-        __ERC721_init("NFTDutchAuction","NFT");
+    constructor(IERC721 _erc721TokenAddress,
+                IERC20 _tokenAddress,
+                uint256 _nftTokenId,
+                uint _reservePrice,
+                uint256 _numBlocksAuctionOpen,
+                uint _offerPriceDecrement){
         reservePrice = _reservePrice;
         numBlocksActionOpen = _numBlocksAuctionOpen;
         offerPriceDecrement = _offerPriceDecrement;
         ownerAddress = payable(msg.sender);
         startBlockNumber = block.number;
         nftTokenId = _nftTokenId;
-        erc721TokenAddress = _erc721TokenAddress;
-        _mint(erc721TokenAddress,nftTokenId);
+        nftTokenAddress = _erc721TokenAddress;
+        tokenAddress = _tokenAddress;
     }
 
     function bid() public payable returns(address) {
         require(!endAuction,"The commodity has been bought");
         require(block.number < (startBlockNumber + numBlocksActionOpen),"out of block number");
         require(msg.value >= (reservePrice + (offerPriceDecrement * (startBlockNumber + numBlocksActionOpen - block.number))),"Your value is lower than reservePrice");
+        require(tokenAddress.balanceOf(msg.sender) >= msg.value, "Have no enough value");
         endAuction = true;
         winnerAddress = payable(msg.sender);
         winningBid = msg.value;
+        tokenAddress.transferFrom(msg.sender, address(this), msg.value);
         return winnerAddress;
 
         //return address(0);
@@ -71,8 +62,9 @@ contract NFTDutchAuction is ERC721Upgradeable{
         require(!finalized, "the auction has finalized");
         require(msg.sender == winnerAddress, "sender Address os not equal to winnerAddress");
         finalized = true;
-        ownerAddress.transfer(winningBid);
-        transferFrom(erc721TokenAddress, winnerAddress, nftTokenId);
+        //ownerAddress.transfer(winningBid);
+        tokenAddress.transferFrom(address(this), ownerAddress, winningBid);
+        //transferFrom(erc721TokenAddress, winnerAddress, nftTokenId);
     }
 
     function refund(uint256 refundAmount) public {
@@ -81,7 +73,8 @@ contract NFTDutchAuction is ERC721Upgradeable{
         uint a = uint(refundAmount);
         require(a<=winningBid, "refund must lower than winningBid");
         finalized = true;
-        winnerAddress.transfer(refundAmount);
+        tokenAddress.transferFrom(address(this), msg.sender, refundAmount);
+        //winnerAddress.transfer(refundAmount);
     }
 
 

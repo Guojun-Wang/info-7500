@@ -65,6 +65,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Pausable__factory>;
     getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
+      name: "IERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
       name: "ERC721",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC721__factory>;
@@ -117,9 +129,25 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Lock__factory>;
     getContractFactory(
+      name: "MyERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MyERC20__factory>;
+    getContractFactory(
+      name: "MyERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MyERC721__factory>;
+    getContractFactory(
+      name: "NFTDutchAuction_ERC20Bids",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bids__factory>;
+    getContractFactory(
       name: "NFTDutchAuction",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.NFTDutchAuction__factory>;
+    getContractFactory(
+      name: "OfficalERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.OfficalERC20__factory>;
 
     getContractAt(
       name: "Initializable",
@@ -187,6 +215,21 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Pausable>;
     getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
+    getContractAt(
       name: "ERC721",
       address: string,
       signer?: ethers.Signer
@@ -252,10 +295,30 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Lock>;
     getContractAt(
+      name: "MyERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MyERC20>;
+    getContractAt(
+      name: "MyERC721",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MyERC721>;
+    getContractAt(
+      name: "NFTDutchAuction_ERC20Bids",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.NFTDutchAuction_ERC20Bids>;
+    getContractAt(
       name: "NFTDutchAuction",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.NFTDutchAuction>;
+    getContractAt(
+      name: "OfficalERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.OfficalERC20>;
 
     // default types
     getContractFactory(
