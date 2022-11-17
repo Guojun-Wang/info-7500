@@ -82,13 +82,14 @@ describe("NFTDutchAuction_ERC20Bids", function () {
 
         it("success a finalize", async function () {
             const {nftDutchAuction_ERC20Bids, owner, otherAccount,thirdAccount,myERC20,myERC721} = await loadFixture(deployNFTDutchAuction_ERC20BidsFixture);
-            await myERC721.pubmint(otherAccount.address, 0);
+            await myERC721.pubmint(owner.address, 0);
             await myERC20.pubmint(otherAccount.address, 1800);
             await myERC20.connect(otherAccount).approve(nftDutchAuction_ERC20Bids.address,1800);
             await myERC20.connect(owner).approve(otherAccount.address, 1800);
 
             await nftDutchAuction_ERC20Bids.connect(otherAccount).bid({value:750});
             expect(await myERC20.allowance(owner.address,otherAccount.address)).equal(1800);
+            await myERC721.connect(owner).approve(nftDutchAuction_ERC20Bids.address, 0);
             await nftDutchAuction_ERC20Bids.connect(otherAccount).finalize();
         });
 

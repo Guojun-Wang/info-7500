@@ -65,7 +65,7 @@ contract NFTDutchAuction_ERC20Bids{
         //ownerAddress.transfer(winningBid);
         tokenAddress.transfer(ownerAddress,winningBid);
         //transferFrom(erc721TokenAddress, winnerAddress, nftTokenId);
-        //nftTokenAddress.transferFrom(ownerAddress,winnerAddress,nftTokenId);
+        nftTokenAddress.transferFrom(ownerAddress,winnerAddress,nftTokenId);
     }
 
     function refund(uint256 refundAmount) public {
@@ -74,7 +74,8 @@ contract NFTDutchAuction_ERC20Bids{
         uint a = uint(refundAmount);
         require(a<=winningBid, "refund must lower than winningBid");
         finalized = true;
-        tokenAddress.transferFrom(address(this), msg.sender, refundAmount);
+
+        tokenAddress.transfer(msg.sender,refundAmount);
         //winnerAddress.transfer(refundAmount);
     }
 
