@@ -28,23 +28,46 @@ export interface NFTDutchAuction_ERC20BidsInterface extends utils.Interface {
   functions: {
     "bid()": FunctionFragment;
     "finalize()": FunctionFragment;
+    "ownerAddress()": FunctionFragment;
     "refund(uint256)": FunctionFragment;
+    "winnerAddress()": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "bid" | "finalize" | "refund"
+    nameOrSignatureOrTopic:
+      | "bid"
+      | "finalize"
+      | "ownerAddress"
+      | "refund"
+      | "winnerAddress"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: "bid", values?: undefined): string;
   encodeFunctionData(functionFragment: "finalize", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "ownerAddress",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "refund",
     values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "winnerAddress",
+    values?: undefined
   ): string;
 
   decodeFunctionResult(functionFragment: "bid", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "finalize", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "ownerAddress",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "refund", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "winnerAddress",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -84,10 +107,14 @@ export interface NFTDutchAuction_ERC20Bids extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    ownerAddress(overrides?: CallOverrides): Promise<[string]>;
+
     refund(
       refundAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    winnerAddress(overrides?: CallOverrides): Promise<[string]>;
   };
 
   bid(
@@ -98,20 +125,28 @@ export interface NFTDutchAuction_ERC20Bids extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  ownerAddress(overrides?: CallOverrides): Promise<string>;
+
   refund(
     refundAmount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
+
+  winnerAddress(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
     bid(overrides?: CallOverrides): Promise<string>;
 
     finalize(overrides?: CallOverrides): Promise<void>;
 
+    ownerAddress(overrides?: CallOverrides): Promise<string>;
+
     refund(
       refundAmount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
+
+    winnerAddress(overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {};
@@ -125,10 +160,14 @@ export interface NFTDutchAuction_ERC20Bids extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    ownerAddress(overrides?: CallOverrides): Promise<BigNumber>;
+
     refund(
       refundAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    winnerAddress(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -140,9 +179,13 @@ export interface NFTDutchAuction_ERC20Bids extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
+    ownerAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     refund(
       refundAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    winnerAddress(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

@@ -7,4 +7,5 @@ contract OfficalERC20 is ERC20{
     function pubmint(address account, uint256 amount) public{
         _mint(account, amount);
     }
+
 }

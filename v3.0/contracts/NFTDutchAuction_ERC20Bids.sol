@@ -11,8 +11,8 @@ import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 
 contract NFTDutchAuction_ERC20Bids{
 
-    address payable ownerAddress;
-    address payable winnerAddress;
+    address payable public ownerAddress;
+    address payable public winnerAddress;
     address erc721TokenAddress;
     uint startBlockNumber;
     IERC20 private tokenAddress;
@@ -65,6 +65,7 @@ contract NFTDutchAuction_ERC20Bids{
         //ownerAddress.transfer(winningBid);
         tokenAddress.transferFrom(address(this), ownerAddress, winningBid);
         //transferFrom(erc721TokenAddress, winnerAddress, nftTokenId);
+        //nftTokenAddress.transferFrom(ownerAddress,winnerAddress,nftTokenId);
     }
 
     function refund(uint256 refundAmount) public {
