@@ -4,6 +4,7 @@
 pragma solidity ^0.8.0;
 
 //import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 
@@ -14,6 +15,7 @@ contract NFTDutchAuction is ERC721Upgradeable{
     address erc721TokenAddress;
     uint startBlockNumber;
     //ERC721 nft;
+    ERC20 erc;
 
     uint256 reservePrice;
     uint256 numBlocksActionOpen;
